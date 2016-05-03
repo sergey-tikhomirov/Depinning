@@ -1,0 +1,120 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\usepackage{fullpage}
+\usepackage{ifthen}
+\usepackage{subfigure}
+\usepackage{epic}
+\usepackage{authblk}
+\usepackage{textcomp}
+\usepackage[small]{caption}
+
+
+\usepackage[hypertexnames=false,colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[numbers,comma,square,sort&compress]{natbib}
+\usepackage[letterpaper,text={7in,9in},centering]{geometry}
+
+
+\usepackage{color}
+\usepackage{titlesec}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{1.0ex plus0.2ex minus0.2ex}
+\renewcommand{\baselinestretch}{1.1}
+\graphicspath{{eps/}{pdf/}}
+%\setcaptionmargin{0.25in}
+\def\captionfont{\itshape\small}
+\def\captionlabelfont{\upshape\small}
+
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+\newcommand{\bqq}{\begin{equation}}
+\newcommand{\eqq}{\end{equation}}
+\newcommand{\bqs}{\begin{equation*}}
+\newcommand{\eqs}{\end{equation*}}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+
+\newcommand{\rme}{\mathrm{e}}
+\newcommand{\rmi}{\mathrm{i}}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\rmo}{{\scriptstyle\mathcal{O}}}
+\newcommand{\rmO}{\mathcal{O}}
+\newcommand{\eps}{\varepsilon}
+
+\numberwithin{equation}{section}
+
+% \newenvironment{Hypothesis}[1]%
+%   {\begin{trivlist}\item[]{\bf Hypothesis #1 }\em}{\end{trivlist}}
+
+\renewcommand{\arraystretch}{1.25}
+
+% Define Theorem Styles ----------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{main}[theorem]{Main Result}
+\newtheorem{rmk}[theorem]{rmk}
+\newtheorem{Hypothesis}[theorem]{Hypothesis}
+
+\newcommand{\etal}{\textit{et al.}\ }
+
+\begin{document}
+
+\section{Relative equilibria}
+
+Consider function $f(u, \theta, \delta, \varepsilon)$,
+where $u, \delta, \varepsilon \in \R$ and $\theta \in \R^m/\Z^m$. For instance
+$$
+f(u, \theta, \delta, \varepsilon) = (u+ \delta)(1-u)(1+u) + \varepsilon g(\theta),
+$$
+where
+$$
+g(\theta) = \sum_{j = 1}^{m}g_j\cos(2 \pi \theta_j), \quad g_j \in \R.
+$$
+
+We study ``travelling waves'' of the equation
+\begin{equation}\label{eq2.1}
+  u_t = u_{xx} + f(u, \theta_0 + \omega x, \delta, \varepsilon).
+\end{equation}
+
+Let us rewrite this equation in the functional space
+\begin{equation}\label{e:U}
+\begin{cases}
+\frac{d}{dt}U = A U + F(U, \theta, \delta, \varepsilon),\\
+\frac{d}{dt}\theta = 0,
+\end{cases}
+\end{equation}
+where $U\in BC^0_\mathrm{unif}(\R)$, $\theta\in\T^m$, $A=\partial_{xx}$, and
+$$
+F(U,\theta;\delta,\varepsilon)(x)=f(u(x),\theta + \omega x;\delta,\varepsilon).
+$$
+Define the action $\mathcal{T}_y$ of the additive group $\R$ on the phase space $BC^0\times \T^m$ via
+\[
+\mathcal{T}_y=\mathrm{diag}\,(T_y,S_y), \quad T_y u(\cdot)=u(\cdot -y),\quad  S_y \phi = \phi+\omega y.
+\]
+The system \eqref{e:U} is invariant under the diagonal action $(T,S)$ on $BC^0\times \T^m$.
+
+For $\varepsilon = 0$ the equation \eqref{eq2.1} admits a travelling wave solution, which is a relative equilibria of \eqref{eq2.1}.
+
+However, in the rigorous proof we are going to study equations \eqref{e:U} with action $(T_y, S_y)$. Action $S_y$ does not have fixed points. So any travelling wave is not a relative equilibria with respect to the symmetry $(T_y, S_y)$. 
+
+We can generalise the notion of relative equilibria to the following. Let $U(t)$ be a travelling wave for $\varepsilon = 0$. Consider sets $A(t) = \{(U(t), \theta): \; \theta \in \T^m\}$. Then for any $t$ there exists $y$ such that $A(t) = \mathcal{T}_y A(0)$. So in some sense $A(0)$ is a relative equilibria. But to this notion we cannot apply [SSW97] and have to repeat its proof.
+
+\end{document}

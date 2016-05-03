@@ -1,0 +1,272 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\usepackage{fullpage}
+\usepackage{ifthen}
+\usepackage{subfigure}
+\usepackage{epic}
+\usepackage{authblk}
+\usepackage{textcomp}
+\usepackage[small]{caption}
+
+
+\usepackage[hypertexnames=false,colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[numbers,comma,square,sort&compress]{natbib}
+\usepackage[letterpaper,text={7in,9in},centering]{geometry}
+
+
+\usepackage{color}
+\usepackage{titlesec}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{1.0ex plus0.2ex minus0.2ex}
+\renewcommand{\baselinestretch}{1.1}
+\graphicspath{{eps/}{pdf/}}
+%\setcaptionmargin{0.25in}
+\def\captionfont{\itshape\small}
+\def\captionlabelfont{\upshape\small}
+
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+\newcommand{\bqq}{\begin{equation}}
+\newcommand{\eqq}{\end{equation}}
+\newcommand{\bqs}{\begin{equation*}}
+\newcommand{\eqs}{\end{equation*}}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}} 
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+
+\newcommand{\rme}{\mathrm{e}}
+\newcommand{\rmi}{\mathrm{i}}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\rmo}{{\scriptstyle\mathcal{O}}}
+\newcommand{\rmO}{\mathcal{O}}
+\newcommand{\eps}{\varepsilon}
+
+\numberwithin{equation}{section}
+
+% \newenvironment{Hypothesis}[1]%
+%   {\begin{trivlist}\item[]{\bf Hypothesis #1 }\em}{\end{trivlist}}
+
+\renewcommand{\arraystretch}{1.25}
+
+
+% Define Theorem Styles ----------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{main}[theorem]{Main Result}
+\newtheorem{rmk}[theorem]{rmk}
+\newtheorem{Hypothesis}[theorem]{Hypothesis}
+
+
+\newcommand{\etal}{\textit{et al.}\ }
+
+
+\begin{document}
+
+\section{Depinning}
+
+We're interested in unpinning asymptotics in inhomogeneous media. For simplicity, we consider continuous inhomogeneous media and only briefly comment on how our results transfer to discrete media. 
+
+Generally, we are interested in, say, 
+\[
+u_t = (d(x)u_x)_x + f(u,x),
+\]
+where $f$ is of bistable nature for all $x$, for instance $f(0,x)=f(1,x)=f(a(x),x)=0$ for all $x$, $f'(0,x)<0$, $f'(1,x)<0$, $f'(a(x),x)>0$. 
+
+For a simpe secific example, we'll focus on $d(x)\equiv 1$ and $f(u,\vartheta(x);\delta,\varepsilon)=(u+\delta)(1-u^2)+\varepsilon g(\vartheta(x))$ with 
+\[
+g=g(\vartheta(x)),\quad \vartheta(x)=\omega x \mod 1,\quad g:\R^m/\Z^m\to \R,\ 
+\]
+and $\omega=(\omega_1,\ldots,\omega_m)\in\R^m$ is a vector of rationally independent frequencies. Yet more specific examples are $g(\vartheta)=\sum_{j=1}^m g_j \cos(2\pi \theta_j)$, $g_j\in\R$. 
+
+
+We write this equation as an abstract system in function space, 
+\begin{equation}\label{e:U}
+U_t=Au+F(U,\theta;\delta,\varepsilon),\quad \theta_t=0,
+\end{equation}
+with $U\in BC^0_\mathrm{unif}(\R)$, $\theta\in\R^m$, $A=\partial_{xx}$, and 
+\[
+F(U,\theta;\delta,\varepsilon)(x)=f(u(x),\vartheta(x)+\theta;\delta,\varepsilon).
+\]
+One can think of the parameter $\theta$ as shifting different spatial frequency components relative to each other. Since frequencies are irrational, the set of all these shifts is the closure of the set of all translates of inhomogeneities that a propagating front will ``experience'', sometimes referred to as the hull. 
+
+
+Now define the action $\mathcal{T}_y$ of the additive group $\R$ on the phase space $BC^0\times \T^m$ via 
+\[
+\mathcal{T}_y=\mathrm{diag}\,(T_y,S_y), \quad T_y u(\cdot)=u(\cdot -y),\quad  S_y \phi = \phi+\omega y.
+\]
+It is now straightforward to verify that our system \eqref{e:U} is invariant under the diagonal action $(T,S)$ on $BC^0\times \T^m$. 
+
+For $\varepsilon=0$ our system possesses a normally hyperbolic manifold given by the family of translates of traveling waves $u_*(\cdot-\xi;\delta)$ with the trivial torus attached. The manifold is invariant under the action of the symmetry group, which acts smoothly. For $\varepsilon$ small, the manifold persists as an invariant manifold and we find a flow  \cite{ssw}
+\[
+\xi'=a(\xi,\theta;\varepsilon,\delta),\qquad \theta'=0.
+\]
+Equivariance with respect to the action of $\R$ implies that (omitting the parameters),
+\[
+a(\xi-y,\theta+\omega y)=a(\xi,\theta),
+\]
+such that 
+\[
+a(\xi,\theta)=a(0,\theta+\omega \xi)=:a_0(\theta+\omega\xi).
+\]
+At $\varepsilon=0$, translation invariance implies $a_0(\phi;\delta)=:s(\delta)$, $s(0)=0$, $s'(0)\neq 0$. Of course, $s$ is simply the $\delta$-dependent speed of the front in the unperturbed, translation invariant medium. On the other hand, at $\delta=0$, we find 
+\[
+a_0(\phi)=\varepsilon \langle e^*(\cdot),g(\omega x+\phi)\rangle +\rmO(\varepsilon^2),
+\]
+where $e^*$ is the kernel of the adjoint linearization at the front, $\partial_xu_*$ (check!?). 
+
+Note that, abstracting from this particular example, any manifold that is invariant with respect to the symmetry is at least as large as $\R\times \T^m$, such that in some sense this example represents the simplest case. We may alternatively, beyond this specific example equation and inhomogeneity, assume this as in the next hypothesis.
+
+\begin{Hypothesis}[minimal invariant manifold]
+Suppose that a dynamical system with parameter $\delta$ that is invariant under the action of the symmetry group $\R$ possesses a smooth manifold invariant under the flow and under the action of the symmetry group, diffeomorphic to $\R\times \T^m$,  with the group $\R$ acting additively on $\R$ and as irrational flow on $\T^m$. 
+\end{Hypothesis}
+As a consequence, we find a vector field on the manifold of the form 
+\[
+\xi'=s(\theta+\omega\xi;\delta), \theta'=0.
+\]
+Note that if $s$ changes sign on $\T^m$, it blocks the flow, that is, $\xi(t)$ is bounded.(more details)
+
+We are interested in depinning and therefore make the following assumption.
+
+\begin{Hypothesis}[critical pinning]
+We have $\min_{\theta in T^m} s(\theta)=0$ for $\delta=0$.
+\end{Hypothesis}
+
+In order to calculate universal depinning asymptotics, we also make the following generic assumption on the behavior near the minimum.
+
+\begin{Hypothesis}[non-degenerate critical pinning]
+The minimum is assumed at $\theta=\theta_*$, ($\theta_*=0$ wlog) and $D^2\theta|_{\theta_*}>0$, the minimum is non-degenerate on the torus. 
+\end{Hypothesis}
+
+\begin{Hypothesis}[non-degenerate depinning]
+Suppose that the system depends on a parameter $\delta$ such that $\min s(\cdot,\delta)=\delta$. 
+\end{Hypothesis} 
+Note that in our example, the role of $\delta$ is played by $\delta-\delta_\mathrm{crit}$. Since nondegenerate minima are robust with respect to perturbations, the minimum  is a smooth function of $\delta$ and the hypothesis merely asserts that this smooth dependence has non-zero derivative, after possibly redefining the parameter $\delta$, locally. 
+ 
+We're now ready to calculate expansions for speeds at depinning. Integrating
+\[
+\xi'=s(\theta+\omega\xi;\delta) 
+\]
+for $\delta>0$ gives
+\[
+\int_0^\xi \frac{1}{s(\theta+\omega\zeta;\delta)} \rmd \zeta = T
+\]
+such that the speed is
+\[
+\bar{s}=\left(\lim_{\xi \to \infty}\frac{1}{\xi}\int_0^\xi \frac{1}{s(\theta+\omega\zeta;\delta)}\rmd \zeta	\right)^{-1},
+\]
+Inspecting this integral, we notice that Birkhoff's ergodic theorem guarantees that the ``temporal'' $\zeta$-average can be replaced by the space average over the torus,
+\[
+\bar{s}=\left(\int_{T^m} \frac{1}{s(\theta;\delta))}\rmd\theta\right)^{-1}.
+\]
+One realizes that the integral gives a bounded contribution in a complement of a fixed small neighborhood $B_\mu(0)$ of the origin as $\delta\to 0$, such that 
+\[\bar{s}=\left(\int_{B_\mu(0)} \frac{1}{\delta+|\theta|^2)}\rmd\theta\right)^{-1}\left(1+\rmo_\delta(1)\right)\]
+(make error terms more precise!?) where changed coordinates in a neighborhood of the origin according to the Morse Lemma. 
+
+The resulting integral now depends on the dimension
+\[
+\int_{B_\mu(0)} \frac{1}{(\delta+|\theta|^2)}\rmd\theta =C\int_{r=0}^\mu (\delta+r^2)^{-1}r^{m-1}\rmd r
+\]
+which evaluates as
+\begin{itemize}
+\item 
+$m=1:$\ 
+$\bar{s}\sim \delta^{1/2}$.
+\item 
+
+$m=2:$ $\bar{s}\sim 1/|\log(\delta)|$
+\item 
+$m>2:$
+\ $\bar{s}\sim s_*+\rmO(\delta), s_*>0$
+\end{itemize}
+
+Intuitively, for larger dimensions, regions where the front is almost pinned are more rare and the front encounters region where it is very slow less frequently. Hence a ``hard'' unpinning for $m>2$, that is, the speed is discontinuous. 
+
+
+\section{Todo}
+
+
+\begin{itemize}
+\item fix various imprecisions and signs(?); formulate a mains result/theorem listing assumptions
+\item universal coefficient for power law depending only on quadratic terms of critical point? should be able to compute
+\item compute at leading order the reduced equation in the specific example
+\item compare asymptotics with numerics
+\item describe what happens at $\delta=0$ for $m=2,m>2$; some fronts pinned, some propagate with less than linear speed.
+\item formulate assumptions what one needs to prove in a general system to ensure that our hypotheses hold; assumptions on medium, assume ex critically pinned front, linearization at pinned front, compute vector field near pinned front by projecting depending on $\theta$ to guarantee that quadratic minimum is non-degenerate; the manifold is the closure of the unstable manifold of this critically pinned equilibrium, show it's normally hyperbolic?
+\item compare literature: Matano's work, ergodic media, etc
+\item need to say how to adapt for lattices since these would first only have $\Z$ as a symmetry group; should be equivalent though since one can at least formally interpolate to a periodic medium; see \cite{vVs}.
+\item evaluate math literature: \cite{nolen2} existence of speed etc. in random, ergodic media, no pinning though since ignition type nonlinearity; results extend supposedly, probably under non-pinning assumption (lots more in this direction, zlatos for isntance), see for instance \cite{nopinning} for bistable case with nopinning assumption; invariance principle (deviations?) \cite{nolen}; \cite{matano}
+\end{itemize}
+
+
+
+\section{Extensions}
+
+\begin{itemize}
+
+\item establish that hypotheses are satisfied in a non-perturbative example; note Polacik's results on principal bundles in parabolic equations \ldots
+\item ergodic media, other examples? Generally media with dependence on a parameter spaces in a smooth manifold should be amenable to this kind of analysis; could think of a smooth manifold with a chaotic (ergodic) flow as an alternate example. 
+\item non-ergodic examples: for instance "heteroclinic" media, such as dependence on $\tanh(x)$, where one expects depinning speed to be the speed at the blocking end, hence $\sim \delta$;
+\item general formulation for non-compact groups, $\R^N$, $\Z^N$, 
+\item formulate something for random media? if speeds are sampled from bounded smooth distribution on smooth manifold, should get same asymptotics depending on dimension. Meaning of dimension in this context? 
+\item one would like to speculate on fractal dimensions, if the medium is sampled from a chaotic process with fractal dimension invariant set. Would need an extension of the process etc.; see also  \cite{vd} and references there (and papers that cite this one), although the connection is not obvious.
+\end{itemize}
+
+
+\begin{thebibliography}{99}
+\addcontentsline{toc}{section}{References}
+\bibitem{vVs} 
+A. Scheel and E. van Vleck
+\textit{Lattice differential equations embedded into reaction-diffusion systems.} 
+Proc. Royal Soc. Edinburgh A, \textbf{139A} (2009), 193--207.
+
+\bibitem{vd}
+J. Vannimenus and B. Derrida.
+\textit{A Solvable Model of Interface Depinning in
+Random Media.}
+J. Stat. Phys. \textbf{105} (2001), 1--23.
+
+\bibitem{nolen}J. Nolen.
+\textit{An invariance principle for random traveling waves in one dimension. }
+SIAM J. Math. Anal. \textbf{43} (2011),  153--188. 
+
+\bibitem{nolen2}J. Nolen and L. Ryzhik.
+\textit{Traveling waves in a one-dimensional heterogeneous medium.}
+Ann. Inst. H. Poincaré Anal. Non Linéaire \textbf{26} (2009),  1021--1047. 
+
+\bibitem{nopinning}
+Y. Q. Shu, W.T. Li, and N.W. Liu.
+\textit{Generalized fronts in reaction-diffusion equations with bistable nonlinearity.}
+Acta Math. Sin. (Engl. Ser.) \textit{28} (2012), 1633--1646. 
+
+\bibitem{matano} H. Matano. \textit{Front propagation in spatially ergodic media.}
+Presentation at “Mathematical Challenges Motivated
+by Multi-Phase Materials”, Anogia, June 21-26, 2009. 
+
+\bibitem{ssw}
+B. Sandstede, A. Scheel, and C. Wulff
+\textit{Dynamics of spiral waves on unbounded domains using center-manifold reduction.}
+J. Differential Eqns. \textbf{141} (1997), 122--149.
+
+
+\end{thebibliography}
+
+\end{document}
+
